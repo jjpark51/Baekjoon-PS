@@ -1,37 +1,35 @@
 #include <iostream>
-#include <stack>
 #include <string>
+#include <stack>
 
 using namespace std;
 
-bool isVPS(const string& str) {
-    stack<char> s;
+bool isVPS(const string& temp) {
+    stack<char> st;
 
-    for (char ch : str) {
-        if (ch == '(') {
-            s.push(ch);
-        } else if (ch == ')') {
-            if (s.empty()) {
-                return false;  // Unmatched closing parenthesis
-            } else {
-                s.pop();
-            }
+    for (int j = 0; j < temp.size(); j++) {
+        if (temp[j] == '(') {
+            st.push(temp[j]);
+        } else if (temp[j] == ')' && st.empty()) {
+            return false;
+        } else {
+            st.pop();
         }
     }
 
-    return s.empty();  // Stack should be empty for a valid VPS
+    return st.empty();
 }
 
 int main() {
-    int T;
-    cin >> T;
-    cin.ignore();  // Ignore newline after reading T
+    int n;
+    cin >> n;
+    cin.ignore();  // Ignore newline after reading n
 
-    for (int i = 0; i < T; ++i) {
-        string input;
-        getline(cin, input);
+    for (int i = 0; i < n; i++) {
+        string temp;
+        getline(cin, temp);
 
-        if (isVPS(input)) {
+        if (isVPS(temp)) {
             cout << "YES" << endl;
         } else {
             cout << "NO" << endl;

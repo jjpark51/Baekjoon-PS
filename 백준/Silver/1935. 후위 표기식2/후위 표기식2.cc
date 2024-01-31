@@ -1,55 +1,74 @@
-#include <iostream>
-#include <iomanip>
+#include <stdio.h>
 #include <stack>
 #include <vector>
 #include <string>
+#include <iostream>
+#include <iomanip>  // Include for std::fixed and std::setprecision
 
 using namespace std;
 
-int main() {
-    int N;
+int main(){
+    int N = 0;
     cin >> N;
+    cin.ignore();
 
-    string expression;
-    cin >> expression;
+    string temp = "";
+    getline(cin, temp);
+    // cout << temp << endl;
 
-    vector<int> operandValues(N);
-    for (int i = 0; i < N; ++i) {
-        cin >> operandValues[i];
+    vector<int> a;
+    stack<double> st;
+    for(int i = 0; i < N; i++){
+        int temp = 0;
+        cin >> temp;
+        a.push_back(temp);
     }
 
-    stack<double> st;
 
-    for (char ch : expression) {
-        if (isalpha(ch)) {
-            // Operand encountered, push corresponding value to the stack
-            st.push(operandValues[ch - 'A']);
-        } else {
-            // Operator encountered, perform operation using the top two operands on the stack
-            double operand2 = st.top();
-            st.pop();
-            double operand1 = st.top();
-            st.pop();
-
-            switch (ch) {
-                case '+':
-                    st.push(operand1 + operand2);
-                    break;
-                case '-':
-                    st.push(operand1 - operand2);
-                    break;
-                case '*':
-                    st.push(operand1 * operand2);
-                    break;
-                case '/':
-                    st.push(operand1 / operand2);
-                    break;
+    for(int i = 0; i < temp.size(); i++){
+        double cal = 0;
+        if(isalpha(temp[i])){
+            st.push(a[temp[i] - 'A']);
+        }
+        else {
+            if(temp[i] == '*'){
+                double a = st.top();
+                st.pop();
+                double b = st.top();
+                st.pop();
+                cal = b* a;
+                // cout << cal << endl;
+                st.push(b*a);
+            }
+            else if(temp[i] == '+'){
+                double a = st.top();
+                st.pop();
+                double b = st.top();
+                st.pop();
+                cal = b + a;
+                // cout << cal << endl;
+                st.push(b+a);
+            }
+            else if(temp[i] == '/'){
+                double a = st.top();
+                st.pop();
+                double b = st.top();
+                st.pop();
+                cal = b / a;
+                // cout << cal << endl;
+                st.push(b/a);
+            }
+            else if(temp[i] == '-'){
+                double a = st.top();
+                st.pop();
+                double b = st.top();
+                st.pop();
+                cal = b - a;
+                // cout << cal << endl;
+                st.push(b-a);
             }
         }
     }
-
-    // Output the final result with precision up to two decimal places
     cout << fixed << setprecision(2) << st.top() << endl;
 
-    return 0;
 }

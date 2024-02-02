@@ -1,14 +1,12 @@
-#include <iostream>
 #include <string>
+#include <iostream>
 
 using namespace std;
 
-int main() {
-    string line;
+int main(){
+    string s;
 
-    while (getline(cin, line)) {
-        cout << line << endl;
+    while(getline(cin, s)){
+        cout << s << endl;
     }
-
-    return 0;
 }

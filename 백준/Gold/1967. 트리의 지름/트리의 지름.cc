@@ -4,45 +4,49 @@
 #include <cstring>
 using namespace std;
 
-vector<pair<long long, long long>> tree[10001];
-long long dist = 0;
-bool visited[10001] = {false};
-long long y = 0;
+vector<pair<long long, long long>> graph[10001];
+bool visited[100001] = {false};
+long long maxDistance;
+long long y;
 
 void dfs(long long x, long long length) {
     if(visited[x] == true){
         return;
     }
+    // cout << x << " ";
     visited[x] = true;
 
-    if(dist < length) {
-        dist = length;
+    if(maxDistance < length){
+        maxDistance = length;
         y = x;
+        // cout << endl;
+        // cout << "This is the current max Distance & endpoint " << endl;
+        // cout << maxDistance << " & " << y << endl;
     }
 
-    for(int i = 0;  i< tree[x].size(); i++){
-        dfs(tree[x][i].first, length + tree[x][i].second);
+    for(int i = 0; i < graph[x].size(); i++){
+        dfs(graph[x][i].first, length + graph[x][i].second);
     }
 }
 
-int main() {
-    long long n;
+int main(){
+    int n;
     cin >> n;
 
-    for(int i = 0; i < n -1; i++){
-        int a , b, c;
-        cin >> a >> b >> c;
+    for(int i = 0 ; i < n - 1; i++){
+        int a ,b , e;
+        cin >> a >> b >> e;
 
-        tree[a].push_back({b,c});
-        tree[b].push_back({a,c});
+        graph[a].push_back({b,e});
+        graph[b].push_back({a,e});
     }
 
-    dfs(1,0);
+    dfs(1, 0);
 
-    dist = 0;
     memset(visited, false, sizeof(visited));
-
+    // cout << "Restart!" << endl;
     dfs(y, 0);
-    cout << dist;
+
+    cout << maxDistance;
 
 }

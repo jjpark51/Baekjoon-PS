@@ -60,18 +60,13 @@ int main() {
         for(int j = 1; j<= m; j++){
             if(visited[i][j] == -1 && map[i][j] == 0){
                 cout << "-1" << endl;
-                flag = 1;
-                break;
+                return 0;
             }
             maxDays = max(maxDays, visited[i][j]);
         }
-        if(flag == 1){
-            break;
-        }
     }
-    if(flag != 1){
-        cout << maxDays << endl;
-    }
+    cout << maxDays << endl;
+
 
    
 }

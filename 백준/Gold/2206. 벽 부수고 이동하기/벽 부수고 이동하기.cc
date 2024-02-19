@@ -6,15 +6,13 @@
 using namespace std;
  int n,m;
  int mat[1001][1001];
+ bool visited[1001][1001][2];
 
 int shortestPath( int k)
 {
     if (n == 1 && m == 1 && (mat[0][0] == 0 || k >= 1))
         return 1;
  
-    vector<vector<vector<bool> > > visited(
-        n, vector<vector<bool> >(
-               m, vector<bool>(k + 1, false)));
     int steps = 1;
  
     queue<vector<int> > q;

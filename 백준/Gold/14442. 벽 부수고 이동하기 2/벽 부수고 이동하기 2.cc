@@ -6,6 +6,7 @@
 using namespace std;
  int n,m;
  int mat[1001][1001];
+ bool visited[1001][1001][11] = {false};
  
  int calcX[4] = {0,0,-1,1};
  int calcY[4] = {1,-1, 0,0};
@@ -26,9 +27,6 @@ int shortestPath( int k)
     int steps = 1;
  
     queue<vector<int>> q;
-    vector<vector<vector<bool> > > visited(
-        n, vector<vector<bool> >(
-               m, vector<bool>(k + 1, false)));
     // The number of walls that we can destroy
     q.push({ 0, 0, k });
  

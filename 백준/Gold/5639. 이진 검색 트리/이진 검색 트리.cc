@@ -3,28 +3,27 @@
 
 using namespace std;
 
-vector<long long>v;
+vector<int>v;
 
+int preIndex; 
 void solve(int start, int end){
-    if(start >= end){
+    if(start > end){
         return;
     }
 
-    if(start == end - 1){
-        cout << v[start] << '\n';
-        return;
-    }
+    int root = v[start];
+    int rightStart = end + 1;
 
-    int index = start + 1;
-    while(index < end){
-        if(v[start] < v[index]){
+    for(int i = start + 1; i <= end; i++){
+        if(v[i] > root){
+            rightStart = i;
             break;
         }
-        index++;
     }
-    solve(start + 1, index);
-    solve(index, end);
-    cout << v[start] << '\n';
+
+    solve(start + 1, rightStart - 1);
+    solve(rightStart, end);
+    cout << root << " ";
 }
 
 int main() {
@@ -39,5 +38,5 @@ int main() {
     // }
     // cout << '\n';
 
-    solve(0, v.size());
+    solve(0, v.size() - 1);
 }

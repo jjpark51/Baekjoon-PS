@@ -20,7 +20,7 @@ int main() {
       counter++;
       // cout << "( " << i << ", " << x- i <<" )" << '\n';
       freq[i] = 0;
-      freq[x-i] = 0;
+      // freq[x-i] = 0;
     }
     
   }

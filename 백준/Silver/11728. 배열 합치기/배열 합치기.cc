@@ -2,9 +2,9 @@
 #include <vector>
 using namespace std;
 int n,m;
-int a[1000001];
-int b[1000001];
-int result[2000002];
+vector<int>a;
+vector<int>b;
+vector<int> result;
 int main() {
     ios::sync_with_stdio(0);
     cin.tie(0);
@@ -14,12 +14,12 @@ int main() {
     for(int i = 0; i < n; i++){
         int tmp;
         cin >> tmp;
-        a[i] = tmp;
+        a.push_back(tmp);
     }
     for(int i = 0; i < m; i++){
         int tmp;
         cin >> tmp;
-        b[i] = tmp;
+        b.push_back(tmp);
     }
 
     int top = 0;
@@ -28,28 +28,29 @@ int main() {
     int index = 0;
     while(1){
         if(a[top] <= b[bottom] && top <= n -1){
-            result[index] = a[top];
-            // result.push_back(a[top]);
+            // result[index] = a[top];
+            result.push_back(a[top]);
             top++;
         }
         else if(a[top] > b[bottom] && bottom <= m - 1){
-            // result.push_back(b[bottom]);
-            result[index] = b[bottom];
+            result.push_back(b[bottom]);
+            // result[index] = b[bottom];
             bottom++;
         }
         else if(top == n){
-            // result.push_back(b[bottom]);
-            result[index] = b[bottom];
+            result.push_back(b[bottom]);
+            // result[index] = b[bottom];
             bottom++;
         }
         else if(bottom == m){
-            result[index] = a[top];
+            // result[index] = a[top];
+            result.push_back(a[top]);
             top++;
         }
         if(top == n && bottom == m){
             break;
         }
-        index++;
+        // index++;
         
 
     }

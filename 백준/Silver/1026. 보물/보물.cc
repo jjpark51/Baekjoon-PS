@@ -4,8 +4,7 @@
 using namespace std;
 int n;
 vector<int>a;
-vector<pair<int,int>>b;
-int new_a[52];
+vector<int>b;
 int main() {
     cin >> n;
 
@@ -20,36 +19,18 @@ int main() {
     for(int j = 0; j < n; j++){
         int tmp;
         cin >> tmp;
-        b.push_back({-tmp, j});
+        b.push_back(tmp);
     }
+    sort(b.begin(), b.end());
 
-    vector<pair<int,int>> tmp;
-    tmp = b;
+    int result = 0;
 
-    sort(tmp.begin(), tmp.end());
-    // for(int i = 0; i < a.size(); i++){
-    //     cout << a[i] << " ";
-    // }
-    // cout << '\n';
-
-    for(int i = 0; i < tmp.size(); i++){
-        // cout << tmp[i].second << ": " << -tmp[i].first << '\n';
-        new_a[tmp[i].second] = a[i];
-    }
-
-    // cout << '\n';
-
-    // for(int i = 0; i < n; i++){
-    //     cout << new_a[i] << " ";
-    // }
-    // cout << '\n';
-    int result = 0; 
-
-    for(int i = 0; i < a.size(); i++){
-        result += new_a[i] * -b[i].first;
+    for(int i = 0; i < n; i++){
+        result += a[i] * b[n-i-1];
     }
     cout << result;
 
+   
 
     
 

@@ -10,7 +10,6 @@ void binary_search(int x  ){
     while (left <= right) {
         mid = (left + right) / 2;
 
-        // 탈출 조건 : a_array에서 x를 찾은 경우
         if (cmp[mid] == x) {
             cout << 1 << "\n";
             return;

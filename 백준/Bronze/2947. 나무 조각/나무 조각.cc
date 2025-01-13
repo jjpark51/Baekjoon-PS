@@ -21,9 +21,7 @@ int main() {
 
         for(int j = 0; j < input.size() - 1; j++){
             if(input[j] > input[j + 1]){
-                int tmp = input[j];
-                input[j] = input[j+1];
-                input[j+1] = tmp;
+                swap(input[j], input[j+1]);
 
                 for(int i = 0; i < input.size(); i++){
                     cout << input[i] << " ";

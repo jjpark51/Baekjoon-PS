@@ -15,9 +15,10 @@ int main() {
         input.push_back(tmp);
     }
 
-
+    int flag =0;
 
     for(int i = 0; i < input.size() - 1; i++){
+        flag = 0;
 
         for(int j = 0; j < input.size() - 1; j++){
             if(input[j] > input[j + 1]){
@@ -27,8 +28,13 @@ int main() {
                     cout << input[i] << " ";
                 }
                 cout << "\n";
+                flag = 1;
             }
 
+        }
+
+        if(flag == 0){
+            break;
         }
 
 

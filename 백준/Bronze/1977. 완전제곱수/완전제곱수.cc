@@ -2,36 +2,34 @@
 #include <vector>
 #include <algorithm>
 #include <string>
+#include <math.h>
 
 using namespace std;
 
 int main() {
-
     int m, n;
     vector<int> result;
-
+    
     cin >> m >> n;
-
-    for(int i = m; i <= n; i++) {        
-        for(int j = 1; j <= i; j++){
-            if(i % j == 0){
-                if(i / j == j){
-                    result.push_back(i);
-                    break;
-                }
-            }
-        }
+    
+    // Find the first perfect square >= m
+    int start = ceil(sqrt(m));
+    // Find the last perfect square <= n
+    int end = floor(sqrt(n));
+    
+    // Check all perfect squares in range
+    for(int i = start; i <= end; i++) {
+        result.push_back(i * i);
     }
-
+    
     int sum = 0;
-    for(int i = 0; i < result.size(); i++){
-        sum += result[i];
+    for(int num : result) {
+        sum += num;
     }
-
-    if(sum == 0){
+    
+    if(result.empty()) {
         cout << -1;
-    }
-    else {
+    } else {
         cout << sum << '\n';
         cout << result[0];
     }
